@@ -803,8 +803,7 @@ elif page_name == "Recommendation Dashboard":
     set_dark_style()
 
     # ── Summary KPIs ─────────────────────────────────────────────────────────
-    improvements = recs_df[recs_df.get("LT_Improvement_%", recs_df.columns[0]).replace("LT_Improvement_%","LT_Improvement_%") in recs_df.columns and
-                           recs_df["LT_Improvement_%"] > 0] if "LT_Improvement_%" in recs_df.columns else recs_df
+    improvements = recs_df[recs_df["LT_Improvement_%"] > 0] if "LT_Improvement_%" in recs_df.columns else recs_df
 
     c1, c2, c3, c4 = st.columns(4)
     c1.markdown(kpi_card(len(recs_df), "Total Recommendations", None, True), unsafe_allow_html=True)
