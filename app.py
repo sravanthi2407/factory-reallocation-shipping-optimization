@@ -711,10 +711,11 @@ elif page_name == "Factory Optimization Simulator":
     ]
     sim_display = sim_df[[c for c in display_cols if c in sim_df.columns]].copy()
     sim_display["Reallocation_Score"] = sim_display["Reallocation_Score"].round(1)
-    st.dataframe(
-        sim_display.style.applymap(colour_score, subset=["Reallocation_Score"]),
-        use_container_width=True, height=400
-    )
+    try:
+        styled = sim_display.style.map(colour_score, subset=["Reallocation_Score"])
+    except AttributeError:
+        styled = sim_display.style.applymap(colour_score, subset=["Reallocation_Score"])
+    st.dataframe(styled, use_container_width=True, height=400)
 
     # ── Score heatmap ─────────────────────────────────────────────────────────
     section("Reallocation Score Heatmap — Product × Factory")
