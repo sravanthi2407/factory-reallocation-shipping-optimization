@@ -80,12 +80,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Imports (project modules) ─────────────────────────────────────────────────
-from preprocessing import (
-    get_clean_data, FACTORY_COORDS, PRODUCT_FACTORY, ALL_FACTORIES
-    if hasattr(__import__('preprocessing'), 'ALL_FACTORIES')
-    else (lambda: None)()
-)
-# Re-define ALL_FACTORIES here for safety
+from preprocessing import get_clean_data, FACTORY_COORDS, PRODUCT_FACTORY
 ALL_FACTORIES = list(FACTORY_COORDS.keys())
 
 from feature_engineering import (
